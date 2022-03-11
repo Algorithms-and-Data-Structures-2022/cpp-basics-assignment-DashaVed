@@ -48,11 +48,7 @@ namespace assignment {
   // Task 4
   void swap_args(int *left, int *right) {
 
-    if (left == nullptr || right == nullptr){
-      *left = *left;
-      *right = *right;
-          }
-    else{
+    if (left != nullptr && right != nullptr){
       int element = *left;
       *left = *right;
       *right = element;
@@ -76,15 +72,15 @@ namespace assignment {
   // Task 6
   int *find_max_elem(int *arr, int length) {
     if (length <= 0 || arr == nullptr){
-      return 0;
+      return nullptr;
     }else{
-      int* result = &arr[0];
       int max_elem = arr[0];
+      int *result = &arr[0];
 
       for (int i = 1; i < length; i++){
         if (arr[i] > max_elem){
           max_elem = arr[i];
-          int* result = &arr[i];
+          result = arr + i;
         }
       }
       return result;
@@ -94,7 +90,7 @@ namespace assignment {
   // Task 7
   int *allocate_arr(int length, int init_value) {
 
-    if (length == 0){
+    if (length <= 0){
         return nullptr;
       }else{
 
@@ -109,11 +105,17 @@ namespace assignment {
   // Task 8
   int *clone_arr(int *arr_in, int length) {
     if (length <= 0 || arr_in == nullptr){
-      return 0;
+      return nullptr;
     }else{
-      int arr_copy[length];
-      std::copy(arr_in, arr_in + length, arr_copy);
-      return 0;
+      int element = arr_in[0];
+      int* arr_copy = new int[length];
+      arr_copy[0] = element;
+      for (int i = 1; i < length; i++){
+        element = arr_in[i];
+        arr_copy[i] = element;
+      }
+
+      return arr_copy;
     }
   }
 
